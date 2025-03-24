@@ -1,6 +1,7 @@
 "use client"
 
 import { useState } from "react"
+import { motion, AnimatePresence } from "framer-motion"
 
 const eventData = {
   "2025-03-01": [
@@ -33,52 +34,122 @@ const eventData = {
 
 function Events() {
   const [selectedDate, setSelectedDate] = useState("2025-03-01")
+  const vintageColors = {
+    primary: "#c44536",
+    secondary: "#2a4359",
+    accent: "#e9e2d4",
+    background: "#f3e9d2"
+  }
 
   return (
-    <div className="container mx-auto px-4 py-8">
-      <h1 className="text-4xl font-bold text-orange-800 mb-6">Event Schedule</h1>
-      <div className="flex justify-center space-x-4 mb-6">
-      </div>
-      <div className="bg-white rounded-lg shadow-lg p-6">
-        <div className="flex justify-center space-x-4 mb-6">
-          {Object.keys(eventData).map((date) => (
-            <button
-              key={date}
-              onClick={() => setSelectedDate(date)}
-              className={`px-4 py-2 rounded-full ${selectedDate === date ? "bg-orange-600 text-white" : "bg-orange-200 text-orange-800 hover:bg-orange-300"
-                } transition-colors`}
-            >
-              {new Date(date).toLocaleDateString("en-US", { month: "short", day: "numeric" })}
-            </button>
-          ))}
+    <div className="min-h-screen bg-gradient-to-br from-[#f3e9d2] via-[#e8d6b5] to-[#d4bf96] py-12 px-4 relative">
+      {/* Decorative background texture */}
+      <div className="absolute inset-0 opacity-20 bg-[url('https://www.transparenttextures.com/patterns/concrete-wall.png')]" />
+
+      <motion.div
+        className="max-w-6xl mx-auto relative z-10"
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ duration: 0.5 }}
+      >
+        <motion.h1
+          className="text-5xl font-bold mb-8 text-[#2a4359] font-serif italic drop-shadow-lg text-center"
+          initial={{ y: -20 }}
+          animate={{ y: 0 }}
+        >
+          Event Schedule
+        </motion.h1>
+
+        {/* Date Selector */}
+        <div className="flex overflow-x-auto pb-4 mb-8 scrollbar-hide">
+          <div className="flex space-x-4 mx-auto">
+            {Object.keys(eventData).map((date) => {
+              const isActive = date === selectedDate
+              return (
+                <motion.button
+                  key={date}
+                  onClick={() => setSelectedDate(date)}
+                  className={`px-6 py-3 rounded-full text-sm font-medium backdrop-blur-lg transition-all ${isActive
+                      ? "bg-[#c44536] text-white shadow-lg"
+                      : "bg-white/30 text-[#2a4359] hover:bg-white/50"
+                    }`}
+                  whileHover={{ scale: 1.05 }}
+                  whileTap={{ scale: 0.95 }}
+                >
+                  {new Date(date).toLocaleDateString("en-US", {
+                    month: "short",
+                    day: "numeric"
+                  })}
+                </motion.button>
+              )
+            })}
+          </div>
         </div>
-        <div>
-          <h2 className="text-2xl font-semibold mb-4">
-            Events on{" "}
-            {new Date(selectedDate).toLocaleDateString("en-US", { month: "long", day: "numeric", year: "numeric" })}
-          </h2>
-          <ul className="grid grid-cols-1 md:grid-cols-2 gap-4">
-            {eventData[selectedDate].map((event, index) => (
-              <li key={index} className="border-l-4 border-orange-500 pl-4">
-                <h3 className="text-xl font-semibold">{event.name}</h3>
-                <p className="text-gray-600">{event.time}</p>
-                <p>{event.description}</p>
-                <div className="mt-2 space-x-2">
-                  <button className="px-4 py-1 bg-green-500 text-white rounded hover:bg-green-600 text-sm">
-                    Register
-                  </button>
-                  <button className="px-4 py-1 bg-blue-500 text-white rounded hover:bg-blue-600 text-sm">
-                    Rules
-                  </button>
-                </div>
-              </li>
-            ))}
-          </ul>
-        </div>
-      </div>
+
+        {/* Event Cards */}
+        <AnimatePresence mode="wait">
+          <motion.div
+            key={selectedDate}
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -20 }}
+            transition={{ duration: 0.3 }}
+            className="bg-white/80 backdrop-blur-xl rounded-3xl shadow-2xl p-8"
+          >
+            <h2 className="text-3xl font-semibold mb-6 text-[#2a4359]">
+              {new Date(selectedDate).toLocaleDateString("en-US", {
+                month: "long",
+                day: "numeric",
+                year: "numeric"
+              })}
+            </h2>
+
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+              {eventData[selectedDate].map((event, index) => (
+                <motion.div
+                  key={index}
+                  className="border-l-4 border-[#c44536] bg-white/90 p-6 rounded-xl shadow-md hover:shadow-lg transition-shadow"
+                  whileHover={{ y: -5 }}
+                >
+                  <div className="flex justify-between items-start">
+                    <div>
+                      <h3 className="text-xl font-semibold text-[#2a4359] mb-2">
+                        {event.name}
+                      </h3>
+                      <p className="text-[#2a4359]/80 font-medium">
+                        ⏳ {event.time}
+                      </p>
+                    </div>
+                    <div className="flex space-x-2">
+                      <motion.button
+                        className="px-4 py-2 bg-[#c44536] text-white rounded-lg text-sm hover:bg-[#b33d30] transition-colors"
+                        whileHover={{ scale: 1.05 }}
+                      >
+                        Register
+                      </motion.button>
+                      <motion.button
+                        className="px-4 py-2 border border-[#2a4359] text-[#2a4359] rounded-lg text-sm hover:bg-[#2a4359]/10 transition-colors"
+                        whileHover={{ scale: 1.05 }}
+                      >
+                        Rules
+                      </motion.button>
+                    </div>
+                  </div>
+                </motion.div>
+              ))}
+            </div>
+          </motion.div>
+        </AnimatePresence>
+
+        {/* Decorative floating elements */}
+        <motion.div
+          className="absolute top-1/3 left-10 w-24 h-24 bg-[#c44536]/10 rounded-full blur-xl"
+          animate={{ y: [0, -40, 0] }}
+          transition={{ duration: 8, repeat: Infinity }}
+        />
+      </motion.div>
     </div>
   )
 }
 
 export default Events
-
