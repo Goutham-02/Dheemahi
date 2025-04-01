@@ -1,111 +1,96 @@
+"use client"
 import { motion } from "framer-motion"
-import { AnimatePresence } from "framer-motion"
+import { Link } from "react-router-dom"
 
-function About() {
+export default function About() {
+    // Sample event details
+    const eventDetails = [
+        { title: "100+", subtitle: "Participantions" },
+        { title: "5 Days", subtitle: "Duration" },
+        { title: "10+", subtitle: "Activities" },
+    ]
+
     return (
-        <div className="min-h-screen bg-gradient-to-br from-[#f3e9d2] via-[#e8d6b5] to-[#d4bf96] relative py-12 px-4">
-            {/* Background texture */}
-            <div className="absolute inset-0 opacity-20 bg-[url('https://www.transparenttextures.com/patterns/concrete-wall.png')]"/>
-            
-            <motion.div 
-                className="max-w-6xl mx-auto relative z-10"
+        <div className="min-h-screen bg-gradient-to-br from-slate-50 to-indigo-50 relative py-12 px-4">
+            {/* Subtle background pattern */}
+            <div className="absolute inset-0 opacity-10 bg-[url('/placeholder.svg?height=100&width=100')]" />
+
+            <motion.div
+                className="max-w-4xl mx-auto relative z-10"
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
                 transition={{ duration: 0.5 }}
             >
-                <motion.h1 
-                    className="text-5xl font-bold mb-8 text-[#2a4359] font-serif italic drop-shadow-lg text-center"
+                <motion.h1
+                    className="text-4xl md:text-5xl font-bold mb-8 text-indigo-700 text-center"
                     initial={{ y: -20 }}
                     animate={{ y: 0 }}
                 >
                     About ಧೀಮಹಿ 2025
                 </motion.h1>
 
-                <div className="grid md:grid-cols-2 gap-8">
-                    {/* Left Column */}
-                    <motion.div 
-                        className="bg-white/80 backdrop-blur-xl rounded-3xl shadow-2xl p-8"
-                        initial={{ x: -50 }}
-                        animate={{ x: 0 }}
+                {/* Main content card */}
+                <motion.div
+                    className="bg-white rounded-2xl shadow-xl p-8 mb-8"
+                    initial={{ y: 20, opacity: 0 }}
+                    animate={{ y: 0, opacity: 1 }}
+                    transition={{ delay: 0.2 }}
+                >
+                    <p className="text-lg text-slate-700 leading-relaxed mb-8">
+                        Dheemahi 2025 is our annual flagship event that brings together talent, creativity, and knowledge in a
+                        celebration of excellence. Join us for an unforgettable experience that showcases the best of our community.
+                    </p>
+
+                    <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-8">
+                        {eventDetails.map((stat, index) => (
+                            <motion.div
+                                key={index}
+                                className="text-center p-4 bg-indigo-50 rounded-xl"
+                                whileHover={{ y: -5 }}
+                                transition={{ type: "spring", stiffness: 300 }}
+                            >
+                                <div className="text-3xl font-bold text-indigo-600">{stat.title}</div>
+                                <div className="text-sm text-slate-600">{stat.subtitle}</div>
+                            </motion.div>
+                        ))}
+                    </div>
+
+                </motion.div>
+
+                {/* Registration info */}
+                <motion.div
+                    className="bg-indigo-600 text-white rounded-2xl p-8 shadow-xl"
+                    initial={{ y: 20, opacity: 0 }}
+                    animate={{ y: 0, opacity: 1 }}
+                    transition={{ delay: 0.4 }}
+                >
+                    <h2 className="text-2xl font-semibold mb-4">Join Us This Year</h2>
+                    <p className="mb-6">
+                        Registration is now open for Dheemahi 2025. Secure your spot and be part of this extraordinary celebration
+                        of talent.
+                    </p>
+                    <motion.button
+                        className="bg-white text-indigo-600 px-6 py-3 rounded-lg font-medium"
+                        whileHover={{ scale: 1.05 }}
+                        whileTap={{ scale: 0.95 }}
                     >
-                        <motion.div
-                            initial={{ opacity: 0 }}
-                            animate={{ opacity: 1 }}
-                            transition={{ delay: 0.2 }}
-                        >
-                            <h2 className="text-3xl font-semibold text-[#c44536] mb-6">Cultural Tapestry</h2>
-                            <p className="text-lg text-[#2a4359]/90 leading-relaxed mb-6">
-                                Our annual cultural extravaganza weaves together India's rich heritage with contemporary 
-                                creativity. Over three immersive days, experience the living tapestry of:
-                            </p>
-                            <ul className="space-y-4 mb-8">
-                                {['Classical Arts Revival', 'Folk Traditions', 'Modern Interpretations', 'Cross-Cultural Fusion'].map((item, index) => (
-                                    <motion.li 
-                                        key={index}
-                                        className="flex items-center gap-3 text-[#2a4359]"
-                                        whileHover={{ x: 10 }}
-                                    >
-                                        <div className="w-2 h-2 bg-[#c44536] rounded-full"/>
-                                        {item}
-                                    </motion.li>
-                                ))}
-                            </ul>
-                        </motion.div>
-                    </motion.div>
+                        <Link to="/events">Register Now</Link>
+                    </motion.button>
+                </motion.div>
 
-                    {/* Right Column */}
-                    <motion.div 
-                        className="space-y-8"
-                        initial={{ x: 50 }}
-                        animate={{ x: 0 }}
-                    >
-                        <motion.div 
-                            className="bg-[#2a4359]/90 backdrop-blur-lg rounded-3xl p-8 border border-white/10 shadow-xl"
-                            initial={{ opacity: 0 }}
-                            animate={{ opacity: 1 }}
-                            transition={{ delay: 0.4 }}
-                        >
-                            <h3 className="text-2xl font-semibold text-[#e9e2d4] mb-4">Celebration Pillars</h3>
-                            <div className="grid grid-cols-2 gap-4">
-                                {[
-                                    { title: "200+", subtitle: "Artists" },
-                                    { title: "3 Days", subtitle: "Duration" },
-                                    { title: "15+", subtitle: "Art Forms" },
-                                    { title: "∞", subtitle: "Memories" }
-                                ].map((stat, index) => (
-                                    <div key={index} className="text-center p-4 bg-white/5 rounded-xl">
-                                        <div className="text-3xl font-bold text-[#c44536]">{stat.title}</div>
-                                        <div className="text-sm text-[#e9e2d4]/80">{stat.subtitle}</div>
-                                    </div>
-                                ))}
-                            </div>
-                        </motion.div>
-
-                        <motion.div 
-                            className="bg-white/80 backdrop-blur-xl rounded-3xl shadow-2xl p-8"
-                            initial={{ opacity: 0 }}
-                            animate={{ opacity: 1 }}
-                            transition={{ delay: 0.6 }}
-                        >
-                            <h3 className="text-2xl font-semibold text-[#2a4359] mb-4">Our Vision</h3>
-                            <p className="text-lg text-[#2a4359]/90 leading-relaxed">
-                                We create bridges between generations through artistic dialogue, preserving tradition 
-                                while embracing innovation. Join us in this vibrant journey where every rhythm tells 
-                                a story and every color whispers heritage.
-                            </p>
-                        </motion.div>
-                    </motion.div>
-                </div>
-
-                {/* Floating Elements */}
-                <motion.div 
-                    className="absolute top-1/3 left-10 w-24 h-24 bg-[#c44536]/10 rounded-full blur-xl"
-                    animate={{ y: [0, -40, 0] }}
-                    transition={{ duration: 8, repeat: Infinity }}
+                {/* Decorative elements */}
+                <motion.div
+                    className="absolute top-20 left-0 w-20 h-20 bg-indigo-300/30 rounded-full blur-xl"
+                    animate={{ y: [0, -30, 0] }}
+                    transition={{ duration: 6, repeat: Number.POSITIVE_INFINITY, ease: "easeInOut" }}
+                />
+                <motion.div
+                    className="absolute bottom-20 right-0 w-24 h-24 bg-cyan-300/30 rounded-full blur-xl"
+                    animate={{ y: [0, 30, 0] }}
+                    transition={{ duration: 8, repeat: Number.POSITIVE_INFINITY, ease: "easeInOut" }}
                 />
             </motion.div>
         </div>
     )
 }
 
-export default About

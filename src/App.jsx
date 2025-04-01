@@ -10,11 +10,19 @@ import './App.css';
 function App() {
   const [isMenuOpen, setIsMenuOpen] = useState(false)
   const location = useLocation()
-  const vintageColors = {
-    primary: "#c44536",
-    secondary: "#2a4359",
-    accent: "#e9e2d4",
-    background: "#f3e9d2"
+
+  // Using the color scheme from Home page
+  const colors = {
+    primary: "#4f46e5",       // indigo-600
+    primaryDark: "#4338ca",   // indigo-700
+    secondary: "#06b6d4",     // cyan-500
+    secondaryDark: "#0891b2", // cyan-600
+    accent: "#7c3aed",        // purple-600
+    textDark: "#1e293b",      // slate-800
+    textMedium: "#475569",    // slate-600
+    textLight: "#f8fafc",     // slate-50
+    background: "#f8fafc",    // slate-50
+    border: "#e2e8f0"         // slate-200
   }
 
   const navLinks = [
@@ -25,13 +33,13 @@ function App() {
   ]
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-[#f3e9d2] via-[#e8d6b5] to-[#d4bf96] relative">
-      {/* Background texture */}
-      <div className="fixed inset-0 opacity-20 bg-[url('https://www.transparenttextures.com/patterns/concrete-wall.png')] z-0"/>
+    <div className="min-h-screen bg-gradient-to-br from-slate-50 via-slate-100 to-slate-200 relative">
+      {/* Background texture - made more subtle to match Home page */}
+      <div className="fixed inset-0 opacity-10 bg-[url('https://www.transparenttextures.com/patterns/concrete-wall.png')] z-0"/>
       
       {/* Navigation */}
       <motion.nav 
-        className="fixed w-full top-0 z-50 backdrop-blur-xl bg-white/30 border-b border-white/20"
+        className="fixed w-full top-0 z-50 backdrop-blur-xl bg-white/80 border-b border-slate-200"
         initial={{ y: -100 }}
         animate={{ y: 0 }}
         transition={{ duration: 0.5 }}
@@ -42,7 +50,7 @@ function App() {
             <div className="md:hidden">
               <motion.button
                 onClick={() => setIsMenuOpen(!isMenuOpen)}
-                className="p-2 rounded-lg text-[#2a4359] hover:text-[#c44536] transition-colors"
+                className="p-2 rounded-lg text-slate-800 hover:text-indigo-600 transition-colors"
                 whileHover={{ scale: 1.05 }}
               >
                 <svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -60,14 +68,14 @@ function App() {
                   to={link.path}
                   className={`relative px-4 py-2 text-lg font-medium ${
                     location.pathname === link.path 
-                      ? "text-[#c44536]" 
-                      : "text-[#2a4359] hover:text-[#c44536]"
+                      ? "text-indigo-600" 
+                      : "text-slate-800 hover:text-indigo-600"
                   } transition-colors`}
                 >
                   {link.name}
                   {location.pathname === link.path && (
                     <motion.div 
-                      className="absolute bottom-0 left-0 w-full h-[2px] bg-[#c44536]"
+                      className="absolute bottom-0 left-0 w-full h-[2px] bg-indigo-600"
                       layoutId="navUnderline"
                     />
                   )}
@@ -81,7 +89,7 @@ function App() {
         <AnimatePresence>
           {isMenuOpen && (
             <motion.div
-              className="md:hidden bg-white/80 backdrop-blur-lg"
+              className="md:hidden bg-white/90 backdrop-blur-lg"
               initial={{ opacity: 0, y: -20 }}
               animate={{ opacity: 1, y: 0 }}
               exit={{ opacity: 0, y: -20 }}
@@ -94,8 +102,8 @@ function App() {
                     onClick={() => setIsMenuOpen(false)}
                     className={`block px-3 py-2 rounded-md text-lg font-medium ${
                       location.pathname === link.path
-                        ? "bg-[#c44536] text-white"
-                        : "text-[#2a4359] hover:bg-[#c44536]/10"
+                        ? "bg-indigo-600 text-white"
+                        : "text-slate-800 hover:bg-indigo-600/10"
                     } transition-colors`}
                   >
                     {link.name}
@@ -129,13 +137,13 @@ function App() {
 
       {/* Footer */}
       <motion.footer 
-        className="fixed bottom-0 w-full backdrop-blur-xl bg-white/30 border-t border-white/20 z-50"
+        className="fixed bottom-0 w-full backdrop-blur-xl bg-white/80 border-t border-slate-200 z-50"
         initial={{ y: 100 }}
         animate={{ y: 0 }}
         transition={{ duration: 0.5 }}
       >
         <div className="max-w-7xl mx-auto py-4 px-4 sm:px-6 lg:px-8">
-          <p className="text-center text-[#2a4359] font-medium">
+          <p className="text-center text-slate-800 font-medium">
             © {new Date().getFullYear()} Sri Madhwa Yuvaka Sangha
           </p>
         </div>

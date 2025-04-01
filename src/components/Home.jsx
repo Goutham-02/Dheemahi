@@ -1,135 +1,235 @@
+import React from 'react';
 import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
-import { useMotionValue, useTransform } from "framer-motion";
+import { Code, Trophy, Music, BookOpen, ChevronRight } from "lucide-react";
 
 function Home() {
-  const x = useMotionValue(0);
-  const y = useMotionValue(0);
-  const rotateX = useTransform(y, [-100, 100], [10, -10]);
-  const rotateY = useTransform(x, [-100, 100], [-10, 10]);
-
   return (
-    <div className="min-h-screen bg-gradient-to-br from-[#f3e9d2] via-[#e8d6b5] to-[#d4bf96] relative overflow-hidden">
-      {/* Decorative elements */}
-      <div className="absolute top-0 left-0 w-full h-full opacity-20 bg-[url('https://www.transparenttextures.com/patterns/concrete-wall.png')]"/>
-      
-      <div 
-        className="container mx-auto px-4 py-20 relative z-10"
-        onMouseMove={(e) => {
-          const rect = e.currentTarget.getBoundingClientRect();
-          x.set(e.clientX - rect.left - rect.width/2);
-          y.set(e.clientY - rect.top - rect.height/2);
-        }}
-      >
-        {/* Header Section */}
-        <motion.div 
-          className="text-center mb-16 group"
-          initial={{ opacity: 0, y: -50 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 1 }}
+    <div className="min-h-screen bg-slate-50 relative overflow-hidden">
+      {/* Dynamic background with gradient */}
+      <div className="absolute inset-0 bg-gradient-to-br from-indigo-50 via-slate-50 to-cyan-50" />
+
+      {/* Animated background elements */}
+      <div className="absolute inset-0 overflow-hidden">
+        {/* Coding element */}
+        <motion.div
+          className="absolute top-[15%] left-[10%]"
+          initial={{ opacity: 0 }}
+          animate={{
+            opacity: [0.2, 0.5, 0.2],
+            y: [0, -20, 0],
+          }}
+          transition={{
+            duration: 8,
+            repeat: Infinity,
+            ease: "easeInOut",
+          }}
         >
-          <h1 className="text-5xl font-bold mb-4 text-[#2a4359] font-serif italic drop-shadow-lg">
-            SRI MADHWA YUVAKA SANGHA &reg;
+          <div className="relative">
+            <div className="absolute inset-0 bg-indigo-400 blur-2xl opacity-20 rounded-full w-32 h-32" />
+            <Code className="w-16 h-16 text-indigo-500/70" />
+          </div>
+        </motion.div>
+
+        {/* Sports element */}
+        <motion.div
+          className="absolute top-[60%] right-[15%]"
+          initial={{ opacity: 0 }}
+          animate={{
+            opacity: [0.2, 0.6, 0.2],
+            y: [0, 15, 0],
+          }}
+          transition={{
+            duration: 10,
+            repeat: Infinity,
+            ease: "easeInOut",
+            delay: 1,
+          }}
+        >
+          <div className="relative">
+            <div className="absolute inset-0 bg-cyan-400 blur-2xl opacity-20 rounded-full w-32 h-32" />
+            <Trophy className="w-16 h-16 text-cyan-500/70" />
+          </div>
+        </motion.div>
+
+        {/* Culture element */}
+        <motion.div
+          className="absolute top-[30%] right-[10%]"
+          initial={{ opacity: 0 }}
+          animate={{
+            opacity: [0.2, 0.5, 0.2],
+            y: [0, -15, 0],
+          }}
+          transition={{
+            duration: 9,
+            repeat: Infinity,
+            ease: "easeInOut",
+            delay: 2,
+          }}
+        >
+          <div className="relative">
+            <div className="absolute inset-0 bg-purple-400 blur-2xl opacity-20 rounded-full w-32 h-32" />
+            <Music className="w-16 h-16 text-purple-500/70" />
+          </div>
+        </motion.div>
+
+        {/* Knowledge element */}
+        <motion.div
+          className="absolute bottom-[20%] left-[15%]"
+          initial={{ opacity: 0 }}
+          animate={{
+            opacity: [0.2, 0.5, 0.2],
+            y: [0, 20, 0],
+          }}
+          transition={{
+            duration: 12,
+            repeat: Infinity,
+            ease: "easeInOut",
+            delay: 3,
+          }}
+        >
+          <div className="relative">
+            <div className="absolute inset-0 bg-amber-400 blur-2xl opacity-20 rounded-full w-32 h-32" />
+            <BookOpen className="w-16 h-16 text-amber-500/70" />
+          </div>
+        </motion.div>
+      </div>
+
+      <div className="container mx-auto px-4 py-16 relative z-10">
+        {/* Header Section */}
+        <motion.div
+          className="text-center mb-16"
+          initial={{ opacity: 0, y: -30 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6 }}
+        >
+          <h1 className="text-4xl md:text-6xl font-bold mb-4 tracking-tight">
+            <span className="text-indigo-700">Sri Madhwa Yuvaka Sangha&reg;</span>
           </h1>
-          <div className="relative inline-block">
-            <div className="absolute inset-0 bg-[#c44536] transform -skew-x-12 opacity-70 group-hover:opacity-90 transition-opacity"/>
-            <p className="relative text-xl font-medium text-[#e9e2d4] px-6 py-2">
-              #88/1, K R Road, Bengaluru - 04
-            </p>
+          <div className="inline-flex items-center gap-4 bg-white px-6 py-2 rounded-full shadow-md">
+            <span className="text-slate-700 font-medium">#88/1, K R Road</span>
+            <div className="w-1 h-4 bg-indigo-500" />
+            <span className="text-slate-700">Bengaluru - 04</span>
           </div>
         </motion.div>
 
         {/* Main Content */}
-        <div className="flex flex-col lg:flex-row items-center justify-center gap-12">
-          {/* Left Column */}
-          <motion.div 
-            className="relative lg:w-1/2"
-            style={{ rotateX, rotateY }}
+        <div className="max-w-4xl mx-auto">
+          {/* Featured Card */}
+          <motion.div
+            className="bg-white rounded-2xl p-8 md:p-10 border border-slate-200 shadow-xl mb-10"
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8 }}
           >
-            <div className="absolute inset-0 bg-[#2a4359] rounded-3xl transform rotate-3 shadow-2xl"/>
-            <div className="relative bg-[#e9e2d4] rounded-3xl p-10 shadow-2xl border-2 border-white/20">
-              <motion.h1
-                className="text-7xl font-bold mb-8 text-[#c44536] text-center font-decorative"
-                initial={{ scale: 0.8, opacity: 0 }}
-                animate={{ scale: 1, opacity: 1 }}
-                transition={{ duration: 1.5 }}
-              >
-                ಧೀಮಹಿ - 2025
-                <div className="absolute inset-0 border-2 border-[#c44536] rounded-3xl opacity-20"/>
-              </motion.h1>
+            <motion.div
+              className="text-center mb-8"
+              initial={{ scale: 0.9, opacity: 0 }}
+              animate={{ scale: 1, opacity: 1 }}
+              transition={{ duration: 0.8, delay: 0.2 }}
+            >
+              <h1 className="text-5xl md:text-7xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-indigo-600 to-cyan-500 mb-6">
+                Dheemahi 2025
+              </h1>
+              <div className="h-1 bg-gradient-to-r from-indigo-600 to-cyan-500 mx-auto w-32 mb-6" />
+            </motion.div>
 
-              <div className="space-y-6 mb-12">
-                <div className="flex items-center gap-4">
-                  <div className="h-1 w-12 bg-[#c44536]"/>
-                  <h3 className="text-2xl font-semibold text-[#2a4359]">HSVJ </h3>
-                </div>
-                <p className="text-lg text-[#2a4359]/90 leading-relaxed">
-                Join us for an exciting lineup of events including CodeQuest, Dumb Charades, Treasure Hunt, cultural performances, quizzes, sports tournaments, and Squid Game!
+            <div className="space-y-6">
+              <div className="flex flex-col items-center">
+                <span className="text-2xl font-semibold text-slate-800">Annual Hostel Event</span>
+                <p className="text-lg text-slate-600 text-center leading-relaxed mt-3 max-w-2xl mx-auto">
+                  A vibrant celebration of sports, and knowledge at our premier annual hostel event.
                 </p>
               </div>
+
+              {/* Feature highlights */}
+              <motion.div
+                className="grid md:grid-cols-3 gap-6 mt-8"
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.8, delay: 0.4 }}
+              >
+                <div className="bg-indigo-50 p-5 rounded-xl text-center">
+                  <div className="bg-indigo-100 w-12 h-12 rounded-full flex items-center justify-center mx-auto mb-3">
+                    <Code className="w-6 h-6 text-indigo-600" />
+                  </div>
+                  <h3 className="font-semibold text-indigo-700">Coding Competition</h3>
+                  <p className="text-sm text-slate-600 mt-2">Showcase your programming skills</p>
+                </div>
+
+                <div className="bg-cyan-50 p-5 rounded-xl text-center">
+                  <div className="bg-cyan-100 w-12 h-12 rounded-full flex items-center justify-center mx-auto mb-3">
+                    <Trophy className="w-6 h-6 text-cyan-600" />
+                  </div>
+                  <h3 className="font-semibold text-cyan-700">Indoor Sports</h3>
+                  <p className="text-sm text-slate-600 mt-2">Compete in chess, carrom, and more</p>
+                </div>
+
+                <div className="bg-purple-50 p-5 rounded-xl text-center">
+                  <div className="bg-purple-100 w-12 h-12 rounded-full flex items-center justify-center mx-auto mb-3">
+                    <Music className="w-6 h-6 text-purple-600" />
+                  </div>
+                  <h3 className="font-semibold text-purple-700">Cultural Events</h3>
+                  <p className="text-sm text-slate-600 mt-2">Explore your cultural talent</p>
+                </div>
+              </motion.div>
             </div>
           </motion.div>
 
-          {/* Right Column */}
-          <motion.div 
-            className="lg:w-1/2 space-y-8"
-            initial={{ opacity: 0, x: 50 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ delay: 0.5 }}
+          {/* Call to Action Buttons */}
+          <motion.div
+            className="grid grid-cols-2 gap-6"
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.6 }}
           >
-            <div className="bg-[#2a4359]/90 backdrop-blur-lg rounded-2xl p-8 border border-white/10 shadow-xl">
-              <p className="text-lg text-[#e9e2d4] mb-6 leading-relaxed">
-                Witness the convergence of classical arts and modern interpretations through:
-              </p>
-              <ul className="space-y-4">
-                {['Live Folk Performances', 'Digital Art Installations', 'Gourmet Street Food Experience', 'Interactive Workshops'].map((item, index) => (
-                  <motion.li 
-                    key={index}
-                    className="flex items-center gap-3 text-[#e9e2d4]"
-                    whileHover={{ x: 10 }}
-                  >
-                    <div className="h-2 w-2 bg-[#c44536] rounded-full"/>
-                    {item}
-                  </motion.li>
-                ))}
-              </ul>
-            </div>
-
-            <Link
-              to="/events"
-              className="inline-block w-full group"
-            >
+            <Link to="/events">
               <motion.div
-                className="bg-[#c44536] hover:bg-[#b33d30] rounded-xl p-6 text-center transition-all duration-300 shadow-lg hover:shadow-xl relative overflow-hidden"
-                whileHover={{ scale: 1.02 }}
+                className="bg-gradient-to-r from-indigo-600 to-indigo-700 text-white rounded-xl p-5 text-center shadow-lg group"
+                whileHover={{ scale: 1.02, y: -2 }}
+                whileTap={{ scale: 0.98 }}
               >
-                <div className="absolute inset-0 bg-white/10 opacity-0 group-hover:opacity-100 transition-opacity"/>
-                <span className="text-xl font-semibold text-[#e9e2d4] flex items-center justify-center gap-2">
-                  Explore Curated Experiences
-                  <motion.span 
-                    className="inline-block"
-                    animate={{ x: [0, 4, 0] }}
-                    transition={{ repeat: Infinity, duration: 1.5 }}
+                <span className="font-medium text-lg flex items-center justify-center">
+                  Register Now
+                  <motion.span
+                    initial={{ x: 0 }}
+                    animate={{ x: 5 }}
+                    transition={{
+                      repeat: Infinity,
+                      repeatType: "reverse",
+                      duration: 0.6,
+                    }}
                   >
-                    →
+                    <ChevronRight className="ml-1 w-5 h-5" />
+                  </motion.span>
+                </span>
+              </motion.div>
+            </Link>
+
+            <Link to="/contact">
+              <motion.div
+                className="bg-gradient-to-r from-cyan-500 to-cyan-600 text-white rounded-xl p-5 text-center shadow-lg group"
+                whileHover={{ scale: 1.02, y: -2 }}
+                whileTap={{ scale: 0.98 }}
+              >
+                <span className="font-medium text-lg flex items-center justify-center">
+                  Contact Us
+                  <motion.span
+                    initial={{ x: 0 }}
+                    animate={{ x: 5 }}
+                    transition={{
+                      repeat: Infinity,
+                      repeatType: "reverse",
+                      duration: 0.6,
+                    }}
+                  >
+                    <ChevronRight className="ml-1 w-5 h-5" />
                   </motion.span>
                 </span>
               </motion.div>
             </Link>
           </motion.div>
         </div>
-
-        {/* Floating Elements */}
-        <motion.div 
-          className="absolute top-1/4 left-1/4 w-24 h-24 bg-[#c44536]/20 rounded-full blur-xl"
-          animate={{ y: [0, -40, 0] }}
-          transition={{ duration: 8, repeat: Infinity }}
-        />
-        <motion.div 
-          className="absolute top-2/3 right-20 w-16 h-16 bg-[#2a4359]/20 rounded-full blur-xl"
-          animate={{ y: [0, 30, 0] }}
-          transition={{ duration: 6, repeat: Infinity, delay: 1 }}
-        />
       </div>
     </div>
   );
