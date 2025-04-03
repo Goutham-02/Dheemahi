@@ -10,7 +10,7 @@ const eventData = {
   "2025-04-20": [
     { name: "Kannada Kalarava", time: "10:30 AM", link: "https://forms.gle/BPkAbF3t7jnZQDzf8" },
     { name: "General Quiz", time: "04:00 PM", link: "https://forms.gle/YYaZomjjWR4TSv8W6" },
-    { name: "Singing Competition🎤🎶", time: "05:30 PM", link: "" },
+    { name: "Singing Competition🎤🎶", time: "05:30 PM", link: "https://forms.gle/j1NuyejafLExFSrZ6" },
     // { name: "General Quiz Round - 2", time: "08:30 PM", link: "" },
   ],
   "2025-04-26": [
