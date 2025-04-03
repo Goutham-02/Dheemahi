@@ -96,24 +96,43 @@ function Home() {
       </div>
 
       <div className="container mx-auto px-4 py-16 relative z-10">
-        {/* Header Section */}
-        <motion.div
-          className="text-center mb-16"
-          initial={{ opacity: 0, y: -30 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6 }}
-        >
-          <h1 className="text-4xl md:text-6xl font-bold mb-4 tracking-tight">
-            <span className="text-indigo-700">Sri Madhwa Yuvaka Sangha&reg;</span>
-          </h1>
-          <div className="inline-flex items-center gap-4 bg-white px-6 py-2 rounded-full shadow-md">
-            <span className="text-slate-700 font-medium">#88/1, K R Road</span>
-            <div className="w-1 h-4 bg-indigo-500" />
-            <span className="text-slate-700">Bengaluru - 04</span>
-          </div>
-        </motion.div>
+          <motion.div
+            className="text-center mb-12"
+            initial={{ opacity: 0, y: -30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6 }}
+          >
+            <h1 className="text-4xl md:text-6xl font-bold mb-4 tracking-tight">
+              <span className="text-transparent bg-clip-text bg-gradient-to-r from-indigo-600 to-blue-700">
+                Sri Madhwa Yuvaka Sangha&reg;
+              </span>
+            </h1>
+            <div className="inline-flex items-center gap-4 bg-white/90 backdrop-blur-sm px-6 py-2 rounded-full shadow-lg border border-indigo-100">
+              <span className="text-slate-800 font-medium">#88/1, K R Road</span>
+              <div className="w-1 h-4 bg-gradient-to-b from-indigo-500 to-blue-500" />
+              <span className="text-slate-700">Bengaluru - 04</span>
+            </div>
+          </motion.div>
 
-        {/* Main Content */}
+          <motion.div
+            className="text-center mb-2"
+            initial={{ opacity: 0, y: -30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6 }}
+          >
+            <h1 className="text-2xl md:text-3xl font-bold mb-1 tracking-tight">
+              <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-700 to-indigo-600">
+                Satpantha Students Union
+              </span>
+            </h1>
+            <h1 className="text-1xl md:text-2xl font-bold tracking-tight">
+              <span className="bg-gradient-to-r from-blue-600 to-indigo-500 text-transparent bg-clip-text">
+                Presents
+              </span>
+            </h1>
+          </motion.div>
+
+          {/* Main Content */}
         <div className="max-w-4xl mx-auto">
           {/* Featured Card */}
           <motion.div

@@ -5,7 +5,7 @@ import { Link } from "react-router-dom"
 export default function About() {
     // Sample event details
     const eventDetails = [
-        { title: "100+", subtitle: "Participantions" },
+        { title: "100+", subtitle: "Participations" },
         { title: "5 Days", subtitle: "Duration" },
         { title: "10+", subtitle: "Activities" },
     ]
@@ -66,16 +66,17 @@ export default function About() {
                 >
                     <h2 className="text-2xl font-semibold mb-4">Join Us This Year</h2>
                     <p className="mb-6">
-                        Registration is now open for Dheemahi 2025. Secure your spot and be part of this extraordinary celebration
-                        of talent.
+                        Registration is now open for Dheemahi 2025. Be part of this extraordinary celebration of talent.
                     </p>
-                    <motion.button
-                        className="bg-white text-indigo-600 px-6 py-3 rounded-lg font-medium"
-                        whileHover={{ scale: 1.05 }}
-                        whileTap={{ scale: 0.95 }}
-                    >
-                        <Link to="/events">Register Now</Link>
-                    </motion.button>
+                    <Link to="/events">
+                        <motion.button
+                            className="bg-white text-indigo-600 px-6 py-3 rounded-lg font-medium cursor-pointer"
+                            whileHover={{ scale: 1.05 }}
+                            whileTap={{ scale: 0.95 }}
+                        >
+                            Register Now
+                        </motion.button>
+                    </Link>
                 </motion.div>
 
                 {/* Decorative elements */}

@@ -3,29 +3,28 @@ import { motion, AnimatePresence } from "framer-motion"
 
 const eventData = {
   "2025-04-19": [
-    { name: "<CodeQuest/>💻", time: "11:30 AM" },
-    { name: "Dumb Charades", time: "02:30 PM" },
-    { name: "Treasure Hunt", time: "09:30 PM" },
+    { name: "<CodeQuest/>💻", time: "11:30 AM", link: "https://forms.gle/SidxniiiSaLzeVb36" },
+    { name: "Dumb Charades", time: "02:30 PM", link: "https://forms.gle/Hqv9a4S1thTZDQzE6" },
+    { name: "Treasure Hunt✨", time: "09:30 PM", link: "https://forms.gle/xJE8FywbycbjS9v36" },
   ],
   "2025-04-20": [
-    { name: "Kannada Kalarava", time: "10:30 AM" },
-    { name: "General Quiz Round - 1", time: "04:00 PM" },
-    { name: "Singing Competition🎤🎶", time: "05:30 PM" },
-    { name: "General Quiz Round - 2", time: "08:30 PM" },
+    { name: "Kannada Kalarava", time: "10:30 AM", link: "https://forms.gle/BPkAbF3t7jnZQDzf8" },
+    { name: "General Quiz", time: "04:00 PM", link: "https://forms.gle/YYaZomjjWR4TSv8W6" },
+    { name: "Singing Competition🎤🎶", time: "05:30 PM", link: "" },
+    // { name: "General Quiz Round - 2", time: "08:30 PM", link: "" },
   ],
   "2025-04-26": [
-    { name: "Carrom", time: "10:00 AM" },
-    { name: "Table Tennis🏓", time: "02:00 PM" },
-    { name: "Chess♟️", time: "02:00 PM" },
+    { name: "Carrom", time: "10:00 AM", link: "https://forms.gle/vZV7iTVcWVNGG3Hs7" },
+    { name: "Table Tennis🏓", time: "02:00 PM", link: "https://forms.gle/rvutFNGhdn9CQttE9" },
+    { name: "Chess♟️", time: "02:00 PM", link: "https://forms.gle/oLCyrNbXfXeF41Mf8" },
   ],
   "2025-04-27": [
     {
-      name: "Badminton🏸",
-      time: "10:00 AM",
+      name: "Badminton🏸", time: "10:00 AM", link: "https://forms.gle/pHwmrav7rPbNBzWA7"
     },
   ],
   "2025-05-01": [
-    { name: "Squid Game🎁", time: "10:00 AM" }
+    { name: "Squid Game🎁", time: "10:00 AM", link: "https://forms.gle/gfsPfyYvbiWMKS5a7" }
   ],
 }
 
@@ -44,7 +43,7 @@ function Events() {
         transition={{ duration: 0.5 }}
       >
         <motion.h1
-          className="text-5xl font-bold mb-8 text-slate-800 font-serif drop-shadow-lg text-center"
+          className="text-5xl font-bold mb-7 text-slate-800 font-serif drop-shadow-lg text-center"
           initial={{ y: -20 }}
           animate={{ y: 0 }}
         >
@@ -52,33 +51,42 @@ function Events() {
         </motion.h1>
 
         {/* Date Selector */}
-        <div className="flex overflow-x-auto pb-4 mb-8 scrollbar-hide">
+        <div className="flex overflow-x-auto py-3 scrollbar-hide">
           <div className="flex space-x-4 mx-auto">
             {Object.keys(eventData).map((date) => {
               const isActive = date === selectedDate
-              return (
+                return (
                 <motion.button
                   key={date}
                   onClick={() => setSelectedDate(date)}
-                  className={`px-6 py-3 rounded-full text-sm font-medium backdrop-blur-lg transition-all ${
-                    isActive
-                      ? "bg-indigo-600 text-white shadow-lg"
-                      : "bg-white/30 text-slate-800 hover:bg-white/50"
+                  className={`px-6 py-3 cursor-pointer rounded-full text-sm font-semibold backdrop-blur-lg transition-all shadow-md ${isActive
+                  ? "bg-indigo-600 text-white shadow-lg ring-2 ring-indigo-400"
+                  : "bg-white/50 text-slate-700 hover:bg-white/70 hover:shadow-lg"
                   }`}
-                  whileHover={{ scale: 1.05 }}
+                  whileHover={{ scale: 1.05, y: -2 }}
                   whileTap={{ scale: 0.95 }}
                 >
                   {new Date(date).toLocaleDateString("en-US", {
-                    month: "short",
-                    day: "numeric"
+                  month: "short",
+                  day: "numeric"
                   })}
                 </motion.button>
-              )
-            })}
-          </div>
-        </div>
-
-        {/* Event Cards */}
+                )
+              })}
+              </div>
+            </div>
+            <div className="flex justify-center my-4">
+              <motion.a
+              className="px-6 py-2.5 mb-2 bg-gradient-to-br cursor-pointer from-blue-500 via-indigo-600 to-purple-700 text-white rounded-lg text-sm font-semibold shadow-md hover:shadow-lg transition-all hover:from-purple-700 hover:via-indigo-600 hover:to-blue-500 hover:bg-gradient-to-br"
+              whileHover={{ scale: 1.05, y: -2 }}
+              whileTap={{ scale: 0.95 }}
+              href="https://drive.google.com/file/d/15pagMhYz01rVGi82t5NaDYYeznNVpHJC/view?usp=drive_link"
+              target="_blank"
+              >
+              Rules & Guidelines
+              </motion.a>
+            </div>
+            {/* Event Cards */}
         <AnimatePresence mode="wait">
           <motion.div
             key={selectedDate}
@@ -113,18 +121,14 @@ function Events() {
                       </p>
                     </div>
                     <div className="flex space-x-2">
-                      <motion.button
-                        className="px-4 py-2 bg-indigo-600 text-white rounded-lg text-sm hover:bg-indigo-700 transition-colors"
+                      <motion.a
+                        className="px-4 py-2 bg-indigo-600 text-white rounded-lg text-sm hover:bg-indigo-700 transition-colors inline-block cursor-pointer"
                         whileHover={{ scale: 1.05 }}
+                        href={event.link}
+                        target="_blank"
                       >
                         Register
-                      </motion.button>
-                      <motion.button
-                        className="px-4 py-2 border border-slate-800 text-slate-800 rounded-lg text-sm hover:bg-slate-800/10 transition-colors"
-                        whileHover={{ scale: 1.05 }}
-                      >
-                        Rules
-                      </motion.button>
+                      </motion.a>
                     </div>
                   </div>
                 </motion.div>

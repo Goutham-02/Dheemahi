@@ -106,7 +106,7 @@ function Contact() {
                 <motion.button
                   type="submit"
                   disabled={state.submitting}
-                  className="w-full py-3 bg-indigo-600 text-white rounded-xl font-medium hover:bg-indigo-700 transition-colors"
+                  className="w-full py-3 bg-indigo-600 text-white cursor-pointer rounded-xl font-medium hover:bg-indigo-700 transition-colors"
                   whileHover={{ scale: 1.02 }}
                   whileTap={{ scale: 0.98 }}
                 >
