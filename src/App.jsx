@@ -6,6 +6,7 @@ import About from "./components/About"
 import Contact from "./components/Contact"
 import Events from "./components/Events"
 import './App.css';
+import { Analytics } from '@vercel/analytics/react';
 
 function App() {
   const [isMenuOpen, setIsMenuOpen] = useState(false)
@@ -35,10 +36,10 @@ function App() {
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-50 via-slate-100 to-slate-200 relative">
       {/* Background texture - made more subtle to match Home page */}
-      <div className="fixed inset-0 opacity-10 bg-[url('https://www.transparenttextures.com/patterns/concrete-wall.png')] z-0"/>
-      
+      <div className="fixed inset-0 opacity-10 bg-[url('https://www.transparenttextures.com/patterns/concrete-wall.png')] z-0" />
+
       {/* Navigation */}
-      <motion.nav 
+      <motion.nav
         className="fixed w-full top-0 z-50 backdrop-blur-xl bg-white/80 border-b border-slate-200"
         initial={{ y: -100 }}
         animate={{ y: 0 }}
@@ -54,7 +55,7 @@ function App() {
                 whileHover={{ scale: 1.05 }}
               >
                 <svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" 
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2"
                     d={isMenuOpen ? "M6 18L18 6M6 6l12 12" : "M4 6h16M4 12h16M4 18h16"} />
                 </svg>
               </motion.button>
@@ -66,15 +67,14 @@ function App() {
                 <Link
                   key={link.path}
                   to={link.path}
-                  className={`relative px-4 py-2 text-lg font-medium ${
-                    location.pathname === link.path 
-                      ? "text-indigo-600" 
-                      : "text-slate-800 hover:text-indigo-600"
-                  } transition-colors`}
+                  className={`relative px-4 py-2 text-lg font-medium ${location.pathname === link.path
+                    ? "text-indigo-600"
+                    : "text-slate-800 hover:text-indigo-600"
+                    } transition-colors`}
                 >
                   {link.name}
                   {location.pathname === link.path && (
-                    <motion.div 
+                    <motion.div
                       className="absolute bottom-0 left-0 w-full h-[2px] bg-indigo-600"
                       layoutId="navUnderline"
                     />
@@ -100,11 +100,10 @@ function App() {
                     key={link.path}
                     to={link.path}
                     onClick={() => setIsMenuOpen(false)}
-                    className={`block px-3 py-2 rounded-md text-lg font-medium ${
-                      location.pathname === link.path
-                        ? "bg-indigo-600 text-white"
-                        : "text-slate-800 hover:bg-indigo-600/10"
-                    } transition-colors`}
+                    className={`block px-3 py-2 rounded-md text-lg font-medium ${location.pathname === link.path
+                      ? "bg-indigo-600 text-white"
+                      : "text-slate-800 hover:bg-indigo-600/10"
+                      } transition-colors`}
                   >
                     {link.name}
                   </Link>
@@ -136,7 +135,7 @@ function App() {
       </main>
 
       {/* Footer */}
-      <motion.footer 
+      <motion.footer
         className="fixed bottom-0 w-full backdrop-blur-xl bg-white/80 border-t border-slate-200 z-50"
         initial={{ y: 100 }}
         animate={{ y: 0 }}
@@ -148,6 +147,7 @@ function App() {
           </p>
         </div>
       </motion.footer>
+      <Analytics />
     </div>
   )
 }
