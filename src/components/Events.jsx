@@ -3,15 +3,14 @@ import { motion, AnimatePresence } from "framer-motion"
 
 const eventData = {
   "2025-04-19": [
-    { name: "<CodeQuest/>💻", time: "11:30 AM", link: "https://forms.gle/SidxniiiSaLzeVb36" },
-    { name: "Dumb Charades", time: "02:30 PM", link: "https://forms.gle/Hqv9a4S1thTZDQzE6" },
-    { name: "Treasure Hunt✨", time: "09:30 PM", link: "https://forms.gle/xJE8FywbycbjS9v36" },
+    { name: "<CodeQuest/>💻", time: "11:30 AM to 01:30 PM", link: "https://forms.gle/SidxniiiSaLzeVb36" },
+    { name: "Dumb Charades", time: "02:30 PM to 05:30 PM", link: "https://forms.gle/Hqv9a4S1thTZDQzE6" },
+    { name: "General Quiz", time: "06:00 PM to 08:30 PM", link: "https://forms.gle/YYaZomjjWR4TSv8W6" },
+    { name: "Treasure Hunt✨", time: "10:00 PM", link: "https://forms.gle/xJE8FywbycbjS9v36" },
   ],
   "2025-04-20": [
-    { name: "Kannada Kalarava", time: "10:30 AM", link: "https://forms.gle/BPkAbF3t7jnZQDzf8" },
-    { name: "General Quiz", time: "04:00 PM", link: "https://forms.gle/YYaZomjjWR4TSv8W6" },
-    { name: "Singing Competition🎤🎶", time: "05:30 PM", link: "https://forms.gle/j1NuyejafLExFSrZ6" },
-    // { name: "General Quiz Round - 2", time: "08:30 PM", link: "" },
+    { name: "Kannada Kalarava", time: "10:30 AM to 01:30 PM", link: "https://forms.gle/BPkAbF3t7jnZQDzf8" },
+    { name: "Singing Competition🎤🎶", time: "06:30 PM to 08:30 PM", link: "https://forms.gle/j1NuyejafLExFSrZ6" },
   ],
   "2025-04-26": [
     { name: "Carrom", time: "10:00 AM", link: "https://forms.gle/vZV7iTVcWVNGG3Hs7" },
@@ -55,38 +54,38 @@ function Events() {
           <div className="flex space-x-4 mx-auto">
             {Object.keys(eventData).map((date) => {
               const isActive = date === selectedDate
-                return (
+              return (
                 <motion.button
                   key={date}
                   onClick={() => setSelectedDate(date)}
                   className={`px-6 py-3 cursor-pointer rounded-full text-sm font-semibold backdrop-blur-lg transition-all shadow-md ${isActive
-                  ? "bg-indigo-600 text-white shadow-lg ring-2 ring-indigo-400"
-                  : "bg-white/50 text-slate-700 hover:bg-white/70 hover:shadow-lg"
-                  }`}
+                    ? "bg-indigo-600 text-white shadow-lg ring-2 ring-indigo-400"
+                    : "bg-white/50 text-slate-700 hover:bg-white/70 hover:shadow-lg"
+                    }`}
                   whileHover={{ scale: 1.05, y: -2 }}
                   whileTap={{ scale: 0.95 }}
                 >
                   {new Date(date).toLocaleDateString("en-US", {
-                  month: "short",
-                  day: "numeric"
+                    month: "short",
+                    day: "numeric"
                   })}
                 </motion.button>
-                )
-              })}
-              </div>
-            </div>
-            <div className="flex justify-center my-4">
-              <motion.a
-              className="px-6 py-2.5 mb-2 bg-gradient-to-br cursor-pointer from-blue-500 via-indigo-600 to-purple-700 text-white rounded-lg text-sm font-semibold shadow-md hover:shadow-lg transition-all hover:from-purple-700 hover:via-indigo-600 hover:to-blue-500 hover:bg-gradient-to-br"
-              whileHover={{ scale: 1.05, y: -2 }}
-              whileTap={{ scale: 0.95 }}
-              href="https://drive.google.com/file/d/15pagMhYz01rVGi82t5NaDYYeznNVpHJC/view?usp=drive_link"
-              target="_blank"
-              >
-              Rules & Guidelines
-              </motion.a>
-            </div>
-            {/* Event Cards */}
+              )
+            })}
+          </div>
+        </div>
+        <div className="flex justify-center my-4">
+          <motion.a
+            className="px-6 py-2.5 mb-2 bg-gradient-to-br cursor-pointer from-blue-500 via-indigo-600 to-purple-700 text-white rounded-lg text-sm font-semibold shadow-md hover:shadow-lg transition-all hover:from-purple-700 hover:via-indigo-600 hover:to-blue-500 hover:bg-gradient-to-br"
+            whileHover={{ scale: 1.05, y: -2 }}
+            whileTap={{ scale: 0.95 }}
+            href="https://drive.google.com/file/d/15pagMhYz01rVGi82t5NaDYYeznNVpHJC/view?usp=drive_link"
+            target="_blank"
+          >
+            Rules & Guidelines
+          </motion.a>
+        </div>
+        {/* Event Cards */}
         <AnimatePresence mode="wait">
           <motion.div
             key={selectedDate}
